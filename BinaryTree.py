@@ -46,11 +46,15 @@ class BinaryTree:
     def depth(self) -> int:
         pass
 
-    def full_traverse(self):
+    def print_tree(self):
         self._traverse(self.root)
 
     def _traverse(self, start: Node):
-        pass
+        if start.has("left"):
+            self._traverse(start.left)
+        print(start)
+        if start.has("right"):
+            self._traverse(start.right)
 
     def to_str(self) -> str:
         return "Root: " + str(self.root)

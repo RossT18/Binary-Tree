@@ -23,4 +23,4 @@ tree = bt.BinaryTree(root)
 print(tree)
 
 
-tree.full_traverse()
+tree.print_tree()
