@@ -4,26 +4,20 @@ import BinaryTree as bt
 
 root = bt.Node(8)
 
-root.left = bt.Node(3)
-root.left.left = bt.Node(1)
-root.left.right = bt.Node(6)
+tree = bt.BinaryTree(root)
 
-root.left.right.left = bt.Node(4)
-root.left.right.right = bt.Node(7)
-
-root.right = bt.Node(10)
-root.right.right = bt.Node(14)
-root.right.right.left = bt.Node(13)
+tree.add(3)
+tree.add(1)
+tree.add(6)
+tree.add(4)
+tree.add(7)
+tree.add(10)
+tree.add(14)
+tree.add(13)
 
 # Expected output order:
 # 1,3,4,6,7,8,10,13,14
 
-tree = bt.BinaryTree(root)
-
 print(tree)
 
-tree.print_tree()
-
-print(len(tree))
-
-#print("Size:", tree.size())
+print("Length: " + str(len(tree)))

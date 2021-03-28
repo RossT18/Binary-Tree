@@ -37,10 +37,27 @@ class Node:
 
 class BinaryTree:
     def __init__(self, root):
-        self.root = root
+        self.root: Node = root
 
-    def add(self) -> None:
-        pass
+    def add(self, data: int) -> None:
+        self._add_node(data, self.root)
+
+    def _add_node(self, data: int, current: Node):
+        if data < current.key:
+            if not current.has("left"):
+                # Add new node with data
+                current.left = Node(data)
+            else:
+                # Traverse left
+                self._add_node(data, current.left)
+        else:
+            if not current.has("right"):
+                # Add new node with data
+                current.right = Node(data)
+            else:
+                # Traverse right
+                self._add_node(data, current.right)
+            
 
     def size(self) -> int:
         """Number of nodes in the binary tree"""
@@ -57,24 +74,26 @@ class BinaryTree:
     def depth(self) -> int:
         pass
 
-    def print_tree(self):
-        self._traverse(self.root)
-
-    def _traverse(self, start: Node):
+    """def _traverse(self, start: Node):
         if start.has("left"):
             self._traverse(start.left)
         print(start)
         if start.has("right"):
-            self._traverse(start.right)
+            self._traverse(start.right)"""
 
-    def to_str(self) -> str:
-        return "Root: " + str(self.root)
+    def _to_str(self, start: Node, current_out: str) -> str:
+        if start.has("left"):
+            current_out = self._to_str(start.left, current_out)
+        current_out += str(start) + "\n"
+        if start.has("right"):
+            current_out = self._to_str(start.right, current_out)
+        return current_out
 
     def __str__(self) -> str:
-        return self.to_str()
+        return self._to_str(self.root, "")
 
     def __repr__(self) -> str:
-        return self.to_str()
+        return self._to_str(self.root, "")
 
     def __len__(self) -> int:
         """Number of nodes in the binary tree"""
