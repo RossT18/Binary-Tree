@@ -22,5 +22,8 @@ tree = bt.BinaryTree(root)
 
 print(tree)
 
-
 tree.print_tree()
+
+print(len(tree))
+
+#print("Size:", tree.size())

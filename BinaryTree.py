@@ -1,3 +1,5 @@
+from typing import List
+
 class Node:
     def __init__(self, key: int) -> None:
         self.key: int = key
@@ -34,14 +36,23 @@ class Node:
         return f"{self.key} with {self.child_count()} children"
 
 class BinaryTree:
-    def __init__(self, root: Node) -> None:
+    def __init__(self, root):
         self.root = root
 
     def add(self) -> None:
         pass
 
     def size(self) -> int:
-        pass
+        """Number of nodes in the binary tree"""
+        return self._count_nodes(self.root, 0)
+
+    def _count_nodes(self, start: Node, c: int) -> int:
+        if start.has("left"):
+            c = self._count_nodes(start.left, c)
+        c += 1
+        if start.has("right"):
+            c = self._count_nodes(start.right, c)
+        return c
 
     def depth(self) -> int:
         pass
@@ -64,3 +75,7 @@ class BinaryTree:
 
     def __repr__(self) -> str:
         return self.to_str()
+
+    def __len__(self) -> int:
+        """Number of nodes in the binary tree"""
+        return self.size()
